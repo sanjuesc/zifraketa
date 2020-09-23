@@ -4,6 +4,7 @@
 
 package Zifratu;
 
+import java.util.HashSet;
 import java.util.Random;
 
 public class App {
@@ -16,15 +17,27 @@ public class App {
     public static void main(String[] args) {
         zifratuProbak();
         dezifratuProbak();
+        hitzetikGakoraProba();
+    }
+
+    private static void hitzetikGakoraProba() {
+        String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
+        App probak = new App(gakoa);
+        String emaitza=probak.hitzetikGakora("HIZTEGIA");
+        System.out.println("Hiztegia hitzarekin, hurrengo gakoa lortu dugu; " + emaitza);
+        System.out.println();
+
     }
 
     private static void dezifratuProbak() {
         String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
         App probak = new App(gakoa);
         String mezuZifratua = "BP MZTVB MBWWZWBJ ZGVB";
-        System.out.println("Hurrengo mezua zifratuko da: "+ mezuZifratua);
+        System.out.println("Hurrengo mezua dezifratuko da: "+ mezuZifratua);
         System.out.println("Alfabeto hau erabiliz: "+ probak.gakoa);
-        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+probak.deszifratu(mezuZifratua));
+        System.out.println("Eta lortu dugun mezu dezifratua honakoa da: "+probak.deszifratu(mezuZifratua));
+        System.out.println();
+
     }
 
 
@@ -44,28 +57,30 @@ public class App {
         System.out.println("Hurrengo mezua zifratuko da: "+ mezua);
         System.out.println("Alfabeto hau erabiliz: "+ probak.gakoa);
         System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+probak.zifratu(mezua));
+        System.out.println();
+
     }
 
-    public void generatuGakoa(){
+    public void generatuGakoa(){        //Zorizko gako bat sortzen du 26 ziklotan
         String gakoRandom="";
-        int lenght = alfabetoa.length();
         Random random = new Random();
         char unekoChar;
+        String alfabetoKopia= alfabetoa;
+        int lenght = alfabetoKopia.length();
         //ºint zikloKop=0;
         while(lenght>gakoRandom.length()){
-            StringBuilder sb = new StringBuilder(alfabetoa);
-            int unekoa = random.nextInt(alfabetoa.length());
-            unekoChar=alfabetoa.charAt(unekoa);
+            StringBuilder sb = new StringBuilder(alfabetoKopia);
+            int unekoa = random.nextInt(alfabetoKopia.length());
+            unekoChar=alfabetoKopia.charAt(unekoa);
             gakoRandom+=unekoChar;
-            sb.deleteCharAt(unekoa);
-            alfabetoa=sb.toString();
+            sb.deleteCharAt(unekoa);    //zi
+            alfabetoKopia=sb.toString();
            // zikloKop++;
         }
-        alfabetoa="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         this.gakoa=gakoRandom;
     }
-    public String zifratu(String mezua){
-        String emaitza="";
+    public String zifratu(String mezua){        //mezuko karaktere bakoitzaren kokapena lortzen dugu alfabetoan
+        String emaitza="";                      //eta kokapen bera, baina gakoan, duen karaktereaz ordezkatzen dugu
         for(int i=0;i<mezua.length();i++){
             if(this.alfabetoa.contains(""+mezua.charAt(i))){
                 emaitza+=this.gakoa.charAt(this.alfabetoa.indexOf(mezua.charAt(i)));
@@ -75,7 +90,7 @@ public class App {
         }
         return emaitza;
     }
-    public String deszifratu(String kripto){
+    public String deszifratu(String kripto){    //zifratu metodoaren berdina, baina gako -> alfabeto
         String emaitza="";
         for(int i=0;i<kripto.length();i++){
             if(this.gakoa.contains(""+kripto.charAt(i))){
@@ -85,6 +100,25 @@ public class App {
             }
         }
         return emaitza;
+    }
+
+    public String hitzetikGakora(String hitza){     //Metodo honek hitz bat hartzen du eta gako bat sortzen du
+        hitza = hitza.toUpperCase();                //non hitz hori gakoaren hasieran dagoen eta ondoren alfabetoko
+        HashSet<Character> badago = new HashSet<>();//beste letra guztiak, letrak errepikatu gabe
+        String gakoBerria = "";
+        for(int i = 0; i<hitza.length(); i++){      //lehenengo hitzaren karactere "unico" bakoitza gehitzen dugu gakora
+            if(!badago.contains(hitza.charAt(i))){
+                gakoBerria+=hitza.charAt(i);
+                badago.add(hitza.charAt(i));
+            }
+        }
+        for(int j=0; j<alfabetoa.length();j++){     //eta ondoren alfabetoko beste karaktereak
+            if(!badago.contains(alfabetoa.charAt(j))){
+                gakoBerria+=alfabetoa.charAt(j);
+                badago.add(alfabetoa.charAt(j));
+            }
+        }
+        return gakoBerria;
     }
 
 
