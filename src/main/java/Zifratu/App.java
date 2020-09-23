@@ -41,7 +41,7 @@ public class App {
     }
 
 
-    public static void zifratuProbak(){
+    private static void zifratuProbak(){
         String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
         String mezua = "EZ GAUDE GERRAREN ALDE";
         App probak = new App(gakoa);
