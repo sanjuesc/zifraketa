@@ -3,24 +3,65 @@
  */
 
 package Zifratu;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+
 public class App {
 
+    public String alfabetoa;
+    public String mezua;
+    public String gakoa;
 
+    public App(String gakoa, String alfa, String mezua){
+        this.alfabetoa= alfa;
+        this.mezua= mezua;
+        this.gakoa=gakoa;
+    }
     public static void main(String[] args) {
-
         String alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
         String mezua = "EZ GAUDE GERRAREN ALDE";
-        System.out.println(zifratu(gakoa, alfa, mezua));
-
+        zifratu1(gakoa, alfa, mezua);
     }
-    public static String zifratu(String gakoa,String alfabetoa, String mezua){
+
+
+    public static void zifratu1(String gakoa, String alfa, String mezua){
+        App lehenetsia = new App(gakoa,alfa,mezua);
+        System.out.println("Hurrengo mezua zifratuko da: "+ lehenetsia.mezua);
+        System.out.println("Alfabeto hau erabiliz: "+ lehenetsia.gakoa);
+        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+lehenetsia.zifratu());
+        App randomGakoa= new App(" ",alfa,mezua);
+        randomGakoa.generatuGakoa(alfa);
+        System.out.println("Hurrengo mezua zifratuko da: "+ randomGakoa.mezua);
+        System.out.println("Alfabeto hau erabiliz: "+ randomGakoa.gakoa);
+        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+randomGakoa.zifratu());
+    }
+
+    public void generatuGakoa(String alfabetoa){
+        String gakoRandom="";
+        Random random = new Random();
+        HashSet<Character> aterata= new HashSet<>();
+        char unekoChar;
+        char[] alfabetoArray = alfabetoa.toCharArray();
+        while(alfabetoa.length()>gakoRandom.length()){
+            int unekoa = random.nextInt(alfabetoa.length());
+            unekoChar=alfabetoArray[unekoa];
+            if(!aterata.contains(unekoChar)){
+                aterata.add(unekoChar);
+                gakoRandom+=unekoChar;
+            }
+        }
+        this.gakoa=gakoRandom;
+    }
+    private String zifratu(){
         String emaitza="";
-        for(int i=0;i<mezua.length();i++){
-            if(alfabetoa.contains(""+mezua.charAt(i))){
-                emaitza+=gakoa.charAt(alfabetoa.indexOf(mezua.charAt(i)));
+        for(int i=0;i<this.mezua.length();i++){
+            if(this.alfabetoa.contains(""+this.mezua.charAt(i))){
+                emaitza+=this.gakoa.charAt(this.alfabetoa.indexOf(this.mezua.charAt(i)));
             }else{
-                emaitza+=mezua.charAt(i);
+                emaitza+=this.mezua.charAt(i);
             }
         }
 
