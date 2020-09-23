@@ -20,7 +20,7 @@ public class App {
             if(alfabetoa.contains(""+mezua.charAt(i))){
                 emaitza+=gakoa.charAt(alfabetoa.indexOf(mezua.charAt(i)));
             }else{
-                emaitza+=" ";
+                emaitza+=mezua.charAt(i);
             }
         }
 
