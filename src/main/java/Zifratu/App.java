@@ -14,11 +14,21 @@ public class App {
         this.gakoa=gakoa;
     }
     public static void main(String[] args) {
-        zifratu1();
+        zifratuProbak();
+        dezifratuProbak();
+    }
+
+    private static void dezifratuProbak() {
+        String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
+        App probak = new App(gakoa);
+        String mezuZifratua = "BP MZTVB MBWWZWBJ ZGVB";
+        System.out.println("Hurrengo mezua zifratuko da: "+ mezuZifratua);
+        System.out.println("Alfabeto hau erabiliz: "+ probak.gakoa);
+        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+probak.deszifratu(mezuZifratua));
     }
 
 
-    public static void zifratu1(){
+    public static void zifratuProbak(){
         String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
         String mezua = "EZ GAUDE GERRAREN ALDE";
         App probak = new App(gakoa);
@@ -51,10 +61,10 @@ public class App {
             alfabetoa=sb.toString();
            // zikloKop++;
         }
-        //System.out.println(zikloKop + " ziklo egin ditu");
+        alfabetoa="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         this.gakoa=gakoRandom;
     }
-    private String zifratu(String mezua){
+    public String zifratu(String mezua){
         String emaitza="";
         for(int i=0;i<mezua.length();i++){
             if(this.alfabetoa.contains(""+mezua.charAt(i))){
@@ -65,4 +75,18 @@ public class App {
         }
         return emaitza;
     }
+    public String deszifratu(String kripto){
+        String emaitza="";
+        for(int i=0;i<kripto.length();i++){
+            if(this.gakoa.contains(""+kripto.charAt(i))){
+                emaitza+=alfabetoa.charAt(this.gakoa.indexOf(kripto.charAt(i)));
+            }else{
+                emaitza+=kripto.charAt(i);
+            }
+        }
+        return emaitza;
+    }
+
+
+
 }
