@@ -1,13 +1,13 @@
-package Zifratu;
+package segurtasuna;
 
 import junit.framework.TestCase;
 
-public class AppTest extends TestCase {
-    App ordezkatzeHiztegia = null;
+public class OrdezkatzeHiztegiaTest extends TestCase {
+    OrdezkatzeHiztegia ordezkatzeHiztegia = null;
 
     public void setUp() throws Exception {
         super.setUp();
-        ordezkatzeHiztegia = new App();
+        ordezkatzeHiztegia = new OrdezkatzeHiztegia();
     }
 
     public void tearDown() throws Exception {
