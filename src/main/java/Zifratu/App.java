@@ -10,10 +10,15 @@ import java.util.Random;
 public class App {
 
     public String alfabetoa="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public String gakoa;
-    public App(String gakoa){
-        this.gakoa=gakoa;
+    public String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
+    //public App(String gakoa){
+        //this.gakoa=gakoa;
+    //}
+    public App(){
+
     }
+
+
     public static void main(String[] args) {
         //zifratuProbak();
         //dezifratuProbak();
@@ -21,8 +26,7 @@ public class App {
     }
 
     private static void hitzetikGakoraProba() {
-        String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
-        App probak = new App(gakoa);
+        App probak = new App();
         String emaitza=probak.hitzetikGakora("HIZTEGIA");
         System.out.println("Hiztegia hitzarekin, hurrengo gakoa lortu dugu; " + emaitza);
         System.out.println();
@@ -30,8 +34,7 @@ public class App {
     }
 
     private static void dezifratuProbak() {
-        String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
-        App probak = new App(gakoa);
+        App probak = new App();
         String mezuZifratua = "BP MZTVB MBWWZWBJ ZGVB";
         System.out.println("Hurrengo mezua dezifratuko da: "+ mezuZifratua);
         System.out.println("Alfabeto hau erabiliz: "+ probak.gakoa);
@@ -42,9 +45,8 @@ public class App {
 
 
     private static void zifratuProbak(){
-        String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
         String mezua = "EZ GAUDE GERRAREN ALDE";
-        App probak = new App(gakoa);
+        App probak = new App();
         System.out.println();
         System.out.println("Orain defektuzko gakoaz zifratuko dugu");
         System.out.println("Hurrengo mezua zifratuko da: "+ mezua);

@@ -1,28 +1,26 @@
 package Zifratu;
 
-import org.junit.Before;
-import org.junit.Test;
+import junit.framework.TestCase;
 
-import static org.junit.Assert.*;
+public class AppTest extends TestCase {
+    App ordezkatzeHiztegia = null;
 
-public class AppTest {
-
-
-    @Before
-    public void setUp(){
+    public void setUp() throws Exception {
+        super.setUp();
+        ordezkatzeHiztegia = new App();
     }
 
-    @Test
-    public void testZifratu1() {
-        App ordezkatzeHiztegia = new App("ZXCVBNMASDFGHJKLQWERTYUIOP");
+    public void tearDown() throws Exception {
+    }
+
+    public void testZifratu() {
         assertEquals("BP MZTVB MBWWZWBJ ZGVB", ordezkatzeHiztegia.zifratu("EZ GAUDE GERRAREN ALDE"));
     }
-
-    @Test
     public void testDeszifratu() {
-        App ordezkatzeHiztegia = new App("ZXCVBNMASDFGHJKLQWERTYUIOP");
+
         assertEquals("EZ GAUDE GERRAREN ALDE",
                 ordezkatzeHiztegia.deszifratu(
                         ordezkatzeHiztegia.zifratu("EZ GAUDE GERRAREN ALDE")));
+
     }
 }
