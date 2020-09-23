@@ -4,42 +4,39 @@
 
 package Zifratu;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 
 public class App {
 
-    public String alfabetoa;
-    public String mezua;
+    public String alfabetoa="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public String gakoa;
-
-    public App(String gakoa, String alfa, String mezua){
-        this.alfabetoa= alfa;
-        this.mezua= mezua;
+    public App(String gakoa){
         this.gakoa=gakoa;
     }
     public static void main(String[] args) {
-        String alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        zifratu1();
+    }
+
+
+    public static void zifratu1(){
         String gakoa="ZXCVBNMASDFGHJKLQWERTYUIOP";
         String mezua = "EZ GAUDE GERRAREN ALDE";
-        zifratu1(gakoa, alfa, mezua);
+        App probak = new App(gakoa);
+        System.out.println();
+        System.out.println("Orain defektuzko gakoaz zifratuko dugu");
+        System.out.println("Hurrengo mezua zifratuko da: "+ mezua);
+        System.out.println("Alfabeto hau erabiliz: "+ probak.gakoa);
+        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+probak.zifratu(mezua));
+
+        System.out.println();
+        System.out.println("Orain zorizko gako batekin zifratuko dugu");
+        probak.generatuGakoa();
+        System.out.println("Hurrengo mezua zifratuko da: "+ mezua);
+        System.out.println("Alfabeto hau erabiliz: "+ probak.gakoa);
+        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+probak.zifratu(mezua));
     }
 
-
-    public static void zifratu1(String gakoa, String alfa, String mezua){
-        App lehenetsia = new App(gakoa,alfa,mezua);
-        System.out.println("Hurrengo mezua zifratuko da: "+ lehenetsia.mezua);
-        System.out.println("Alfabeto hau erabiliz: "+ lehenetsia.gakoa);
-        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+lehenetsia.zifratu());
-        App randomGakoa= new App(" ",alfa,mezua);
-        randomGakoa.generatuGakoa(alfa);
-        System.out.println("Hurrengo mezua zifratuko da: "+ randomGakoa.mezua);
-        System.out.println("Alfabeto hau erabiliz: "+ randomGakoa.gakoa);
-        System.out.println("Eta lortu dugun mezu zifratua honakoa da: "+randomGakoa.zifratu());
-    }
-
-    public void generatuGakoa(String alfabetoa){
+    public void generatuGakoa(){
         String gakoRandom="";
         int lenght = alfabetoa.length();
         Random random = new Random();
@@ -57,13 +54,13 @@ public class App {
         //System.out.println(zikloKop + " ziklo egin ditu");
         this.gakoa=gakoRandom;
     }
-    private String zifratu(){
+    private String zifratu(String mezua){
         String emaitza="";
-        for(int i=0;i<this.mezua.length();i++){
-            if(this.alfabetoa.contains(""+this.mezua.charAt(i))){
-                emaitza+=this.gakoa.charAt(this.alfabetoa.indexOf(this.mezua.charAt(i)));
+        for(int i=0;i<mezua.length();i++){
+            if(this.alfabetoa.contains(""+mezua.charAt(i))){
+                emaitza+=this.gakoa.charAt(this.alfabetoa.indexOf(mezua.charAt(i)));
             }else{
-                emaitza+=this.mezua.charAt(i);
+                emaitza+=mezua.charAt(i);
             }
         }
         return emaitza;
