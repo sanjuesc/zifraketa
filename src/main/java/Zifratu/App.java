@@ -41,18 +41,21 @@ public class App {
 
     public void generatuGakoa(String alfabetoa){
         String gakoRandom="";
+        int lenght = alfabetoa.length();
         Random random = new Random();
-        HashSet<Character> aterata= new HashSet<>();
         char unekoChar;
-        char[] alfabetoArray = alfabetoa.toCharArray();
-        while(alfabetoa.length()>gakoRandom.length()){
+        int zikloKop=0;
+        while(lenght>gakoRandom.length()){
+            StringBuilder sb = new StringBuilder(alfabetoa);
             int unekoa = random.nextInt(alfabetoa.length());
-            unekoChar=alfabetoArray[unekoa];
-            if(!aterata.contains(unekoChar)){
-                aterata.add(unekoChar);
-                gakoRandom+=unekoChar;
-            }
+            unekoChar=alfabetoa.charAt(unekoa);
+            gakoRandom+=unekoChar;
+            sb.deleteCharAt(unekoa);
+            alfabetoa=sb.toString();
+            System.out.println(gakoRandom + " da gakoa eta honakoa caracterea: " +unekoChar);
+            zikloKop++;
         }
+        System.out.println(zikloKop + " ziklo egin ditu");
         this.gakoa=gakoRandom;
     }
     private String zifratu(){
