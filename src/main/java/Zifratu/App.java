@@ -15,9 +15,9 @@ public class App {
         this.gakoa=gakoa;
     }
     public static void main(String[] args) {
-        zifratuProbak();
-        dezifratuProbak();
-        hitzetikGakoraProba();
+        //zifratuProbak();
+        //dezifratuProbak();
+        //hitzetikGakoraProba();
     }
 
     private static void hitzetikGakoraProba() {
