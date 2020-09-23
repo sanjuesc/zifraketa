@@ -73,7 +73,7 @@ public class App {
             int unekoa = random.nextInt(alfabetoKopia.length());
             unekoChar=alfabetoKopia.charAt(unekoa);
             gakoRandom+=unekoChar;
-            sb.deleteCharAt(unekoa);    //zi
+            sb.deleteCharAt(unekoa);
             alfabetoKopia=sb.toString();
            // zikloKop++;
         }
